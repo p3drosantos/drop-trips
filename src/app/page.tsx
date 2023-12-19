@@ -1,5 +1,7 @@
-const HomePage = () => {
-  return <h1>home page</h1>;
+"use client";
+
+export const HomePage = () => {
+  return <div></div>;
 };
 
 export default HomePage;
