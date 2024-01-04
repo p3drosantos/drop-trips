@@ -9,7 +9,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "DROP Trips",
+  title: "Drop Trips",
   description: "Sistema de reservas de viagens",
 };
 
