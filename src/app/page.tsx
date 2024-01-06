@@ -1,15 +1,14 @@
-"use client";
-
+import React from "react";
 import QuickSearch from "./components/QuickSearch";
+import RecommendedTrips from "./components/RecommendedTrips";
 import TripSearch from "./components/TripSearch";
 
-export const HomePage = () => {
+export default function HomePage() {
   return (
     <div>
       <TripSearch />
       <QuickSearch />
+      <RecommendedTrips />
     </div>
   );
-};
-
-export default HomePage;
+}
