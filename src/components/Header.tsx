@@ -5,6 +5,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
 
 const Header = () => {
   const { status, data } = useSession();
@@ -26,10 +27,12 @@ const Header = () => {
 
   return (
     <div className="container mx-auto p-5 py-0 flex justify-between items-center h-[93px]">
-      <div className="flex gap-2 ">
-        <ImAirplane className=" text-xl text-primary " />
-        <p className="text-primary font-bold">droptrips</p>
-      </div>
+      <Link href="/">
+        <div className="flex gap-2 ">
+          <ImAirplane className=" text-xl text-primary " />
+          <p className="text-primary font-bold">droptrips</p>
+        </div>
+      </Link>
 
       {status === "unauthenticated" && (
         <button
