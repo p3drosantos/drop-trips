@@ -7,7 +7,9 @@ import { Trip } from "@prisma/client";
 import { Controller, useForm } from "react-hook-form";
 
 interface TripReservationProps {
-  trip: Trip;
+  tripStartDate: Date;
+  tripEndDate: Date;
+  maxGuests: number;
 }
 
 interface TripReservationForm {
@@ -16,18 +18,25 @@ interface TripReservationForm {
   endDate: Date;
 }
 
-const TripReservation = ({ trip }: TripReservationProps) => {
+const TripReservation = ({
+  tripStartDate,
+  tripEndDate,
+  maxGuests,
+}: TripReservationProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
+    watch,
   } = useForm<TripReservationForm>();
 
   const onSubmit = (data: any) => {
     console.log({ data });
     console.log({ errors });
   };
+
+  const startDate = watch("startDate");
 
   return (
     <div className="flex flex-col px-5">
@@ -49,6 +58,7 @@ const TripReservation = ({ trip }: TripReservationProps) => {
               onChange={field.onChange}
               selected={field.value}
               className="w-full"
+              minDate={new Date(Date.now())}
             />
           )}
         />
@@ -69,12 +79,14 @@ const TripReservation = ({ trip }: TripReservationProps) => {
               onChange={field.onChange}
               selected={field.value}
               className="w-full"
+              // maxDate={tripEndDate}
+              minDate={startDate || tripStartDate}
             />
           )}
         />
       </div>
       <Input
-        placeholder={`Número de hóspedes (max: ${trip.maxGuests})`}
+        placeholder={`Número de hóspedes (max: ${maxGuests})`}
         className="mt-4"
         {...register("guests", {
           required: {
