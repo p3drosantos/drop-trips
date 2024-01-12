@@ -59,7 +59,7 @@ const TripReservation = ({
     }
 
     if (res.error.code === "INVALID_START_DATE") {
-      return setError("startDate", {
+      setError("startDate", {
         type: "manual",
         message: "Data inicial inválida",
       });
@@ -124,12 +124,21 @@ const TripReservation = ({
         />
       </div>
       <Input
+        type="number"
         placeholder={`Número de hóspedes (max: ${maxGuests})`}
         className="mt-4"
         {...register("guests", {
           required: {
             value: true,
             message: "Número de hóspedes é obrigatório",
+          },
+          min: {
+            value: 1,
+            message: "Número mínimo de hóspedes é 1",
+          },
+          max: {
+            value: maxGuests,
+            message: `Número máximo de hóspedes é ${maxGuests}`,
           },
         })}
         error={!!errors?.guests}
