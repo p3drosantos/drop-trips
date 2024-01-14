@@ -5,6 +5,22 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const req = await request.json();
 
+  const trip = await prisma.trip.findUnique({
+    where: {
+      id: req.tripId,
+    },
+  });
+
+  if (!trip) {
+    return new NextResponse(
+      JSON.stringify({
+        error: {
+          code: "TRIP_NOT_FOUND",
+        },
+      })
+    );
+  }
+
   if (isBefore(new Date(req.startDate), new Date(Date.now()))) {
     return new NextResponse(
       JSON.stringify({
@@ -56,6 +72,7 @@ export async function POST(request: Request) {
   return new NextResponse(
     JSON.stringify({
       success: true,
+      trip,
     })
   );
 }
