@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import UserReservationItem from "./components/UserReservationItem";
+import Button from "@/components/Button";
 
 const MyTrips = () => {
   const [reservations, setReservations] = useState<
@@ -37,9 +38,24 @@ const MyTrips = () => {
   return (
     <div className="container mx-auto p-5">
       <h1 className="font-semibold text-primaryDark text-xl">Minhas Viagens</h1>
-      {reservations?.map((reservation) => (
-        <UserReservationItem reservation={reservation} key={reservation.id} />
-      ))}
+      {reservations.length > 0 ? (
+        reservations?.map((reservation) => (
+          <UserReservationItem reservation={reservation} key={reservation.id} />
+        ))
+      ) : (
+        <div className="flex flex-col">
+          <p className="mt-2 font-medium text-primaryDark">
+            Você ainda não tem nenhuma reserva!
+          </p>
+          <Button
+            onClick={() => router.push("/")}
+            className="mt-5"
+            variant="primary"
+          >
+            Fazer reserva
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
