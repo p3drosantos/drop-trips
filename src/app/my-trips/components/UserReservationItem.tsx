@@ -5,7 +5,6 @@ import { Prisma } from "@prisma/client";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 import ReactCountryFlag from "react-country-flag";
 import { toast } from "react-toastify";
@@ -14,11 +13,13 @@ interface UserReservationItemProps {
   reservation: Prisma.TripReservationGetPayload<{
     include: { trip: true };
   }>;
+  fetchReservations: () => void;
 }
 
-const UserReservationItem = ({ reservation }: UserReservationItemProps) => {
-  const router = useRouter();
-
+const UserReservationItem = ({
+  reservation,
+  fetchReservations,
+}: UserReservationItemProps) => {
   const { trip } = reservation;
 
   const handleDeleteClick = async () => {
@@ -31,7 +32,8 @@ const UserReservationItem = ({ reservation }: UserReservationItemProps) => {
     }
 
     toast.success("Reserva cancelada com sucesso!");
-    router.push("/");
+
+    fetchReservations();
   };
 
   return (
