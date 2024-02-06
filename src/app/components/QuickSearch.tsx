@@ -15,32 +15,40 @@ const QuickSearch = () => {
         <div className="w-full h-[1px] bg-grayLighter"></div>
       </div>
 
-      <div className="flex w-full justify-between mt-5">
+      <div className="flex w-full justify-between mt-5 lg:mt-10 lg:justify-center lg:gap-40">
         <Link href={"/trips/search?text=hotel"}>
           <div className="flex flex-col items-center gap-1">
             <LuHotel size={35} className=" text-grayPrimary cursor-pointer" />
-            <p className=" text-sm text-grayPrimary font-semibold">Hotel</p>
+            <p className=" text-sm lg:text-base text-grayPrimary font-semibold">
+              Hotel
+            </p>
           </div>
         </Link>
 
         <Link href={"/trips/search?text=fazenda"}>
           <div className="flex flex-col items-center gap-1 cursor-pointer">
             <GiFarmTractor size={35} className=" text-grayPrimary" />
-            <p className=" text-sm text-grayPrimary font-semibold">Fazenda</p>
+            <p className=" text-sm lg:text-base text-grayPrimary font-semibold">
+              Fazenda
+            </p>
           </div>
         </Link>
 
         <Link href={"/trips/search?text=chalé"}>
           <div className="flex flex-col items-center gap-1 cursor-pointer">
             <MdOutlineCottage size={35} className=" text-grayPrimary" />
-            <p className=" text-sm text-grayPrimary font-semibold">Chalé</p>
+            <p className=" text-sm lg:text-base text-grayPrimary font-semibold">
+              Chalé
+            </p>
           </div>
         </Link>
 
         <Link href={"/trips/search?text=pousada"}>
           <div className="flex flex-col items-center gap-1 cursor-pointer">
             <PiHouseLineBold size={35} className=" text-grayPrimary" />
-            <p className=" text-sm text-grayPrimary font-semibold">Pousada</p>
+            <p className=" text-sm lg:text-base text-grayPrimary font-semibold">
+              Pousada
+            </p>
           </div>
         </Link>
       </div>
