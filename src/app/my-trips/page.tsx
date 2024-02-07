@@ -36,7 +36,7 @@ const MyTrips = () => {
   console.log({ reservations });
 
   return (
-    <div className="container mx-auto p-5">
+    <div className="container mx-auto p-5 lg:max-w-[600px] lg:flex lg:flex-col lg:items-center lg:p-40 ">
       <h1 className="font-semibold text-primaryDark text-xl lg:mb-5">
         Minhas Viagens
       </h1>
@@ -51,7 +51,7 @@ const MyTrips = () => {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col">
+        <div className="flex flex-col lg:max-w-[300px]">
           <p className="mt-2 font-medium text-primaryDark">
             Você ainda não tem nenhuma reserva!
           </p>

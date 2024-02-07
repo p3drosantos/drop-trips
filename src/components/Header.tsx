@@ -26,7 +26,7 @@ const Header = () => {
   };
 
   return (
-    <div className="container mx-auto p-5 py-0 flex justify-between items-center h-[93px]">
+    <div className="container mx-auto p-5 py-0 flex justify-between items-center h-[93px] lg:border-b lg:border-grayLighter">
       <Link href="/">
         <div className="flex gap-2 ">
           <ImAirplane className=" text-xl text-primary " />
