@@ -50,7 +50,7 @@ const TripSearch = () => {
             control={control}
             render={({ field }) => (
               <DatePicker
-                placeholderText="Onde você quer ir?"
+                placeholderText="Data final"
                 onChange={field.onChange}
                 selected={field.value}
                 className="w-full"
@@ -75,7 +75,7 @@ const TripSearch = () => {
 
         <Button
           onClick={() => handleSubmit(onSubmit)()}
-          className=" lg:h-fit w-full"
+          className=" lg:h-fit w-1/2"
         >
           Buscar
         </Button>
