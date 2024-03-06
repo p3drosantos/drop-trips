@@ -5,14 +5,9 @@ import { NextResponse } from "next/server";
 export async function GET(
   req: Request,
   { params: { userId } }: { params: { userId: string } }
-) {
+): Promise<void | Response> {
   if (!userId) {
-    return {
-      status: 400,
-      body: {
-        message: "Missing user id",
-      },
-    };
+    return new NextResponse("User ID is required", { status: 400 });
   }
 
   const reservations = await prisma.tripReservation.findMany({
