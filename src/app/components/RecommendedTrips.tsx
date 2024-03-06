@@ -3,11 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { Trip } from "@prisma/client";
 
 async function getTrips() {
-  const trips = await prisma.trip.findMany({
-    where: {
-      recommended: true,
-    },
-  });
+  const trips = await prisma.trip.findMany({});
 
   return trips;
 }
