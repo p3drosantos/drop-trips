@@ -53,8 +53,8 @@ const TripSearch = () => {
                 placeholderText="Data final"
                 onChange={field.onChange}
                 selected={field.value}
-                className="w-full"
                 minDate={new Date()}
+                className="w-full"
               />
             )}
           />
@@ -75,7 +75,7 @@ const TripSearch = () => {
 
         <Button
           onClick={() => handleSubmit(onSubmit)()}
-          className=" lg:h-fit w-1/2"
+          className=" lg:h-fit sm:w-full w-1/2"
         >
           Buscar
         </Button>
