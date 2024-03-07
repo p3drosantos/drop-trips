@@ -3,13 +3,18 @@ import { prisma } from "@/lib/prisma";
 import { Trip } from "@prisma/client";
 
 async function getTrips() {
-  const trips = await prisma.trip.findMany({});
+  const trips = await prisma.trip.findMany({
+    where: {
+      recommended: true,
+    },
+  });
 
   return trips;
 }
 
 const RecommendedTrips = async () => {
   const data = await getTrips();
+  // console.log(data);
 
   return (
     <div className="container mx-auto p-5">
