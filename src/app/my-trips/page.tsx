@@ -1,9 +1,11 @@
 "use client";
 
-import { Prisma, TripReservation } from "@prisma/client";
+import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Prisma } from "@prisma/client";
+import Link from "next/link";
+
 import UserReservationItem from "./components/UserReservationItem";
 import Button from "@/components/Button";
 
@@ -12,32 +14,33 @@ const MyTrips = () => {
     Prisma.TripReservationGetPayload<{
       include: { trip: true };
     }>[]
-  >([]); // [1
+  >([]);
+
   const { status, data } = useSession();
 
   const router = useRouter();
 
   const fetchReservations = async () => {
     const response = await fetch(
-      `/api/user/${(data?.user as any).id}/reservations`
+      `/api/user/${(data?.user as any)?.id}/reservations`
     );
-    const reservations = await response.json();
-    setReservations(reservations);
+
+    const json = await response.json();
+
+    setReservations(json);
   };
 
   useEffect(() => {
-    if (status === "unauthenticated" || !data?.user) {
-      router.push("/");
+    if (status === "unauthenticated") {
+      return router.push("/");
     }
 
     fetchReservations();
   }, [status]);
 
-  console.log({ reservations });
-
   return (
-    <div className="container mx-auto p-5 lg:max-w-[600px] lg:flex lg:flex-col lg:items-center lg:p-40 ">
-      <h1 className="font-semibold text-primaryDark text-xl lg:mb-5">
+    <div className="container mx-auto p-5">
+      <h1 className="font-semibold text-primaryDarker text-xl lg:mb-5">
         Minhas Viagens
       </h1>
       {reservations.length > 0 ? (
@@ -45,23 +48,20 @@ const MyTrips = () => {
           {reservations?.map((reservation) => (
             <UserReservationItem
               fetchReservations={fetchReservations}
-              reservation={reservation}
               key={reservation.id}
+              reservation={reservation}
             />
           ))}
         </div>
       ) : (
-        <div className="flex flex-col lg:max-w-[300px]">
-          <p className="mt-2 font-medium text-primaryDark">
-            Você ainda não tem nenhuma reserva!
+        <div className="flex flex-col lg:max-w-[500px]">
+          <p className="mt-2 font-medium text-primaryDarker">
+            Você ainda não tem nenhuma reserva! =(
           </p>
-          <Button
-            onClick={() => router.push("/")}
-            className="mt-5"
-            variant="primary"
-          >
-            Fazer reserva
-          </Button>
+
+          <Link href="/">
+            <Button className="w-full mt-2 lg:mt-5">Fazer reserva</Button>
+          </Link>
         </div>
       )}
     </div>
